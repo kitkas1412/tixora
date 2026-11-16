@@ -1,0 +1,9 @@
+logging:
+  level:
+    org.hibernate.SQL: info
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true

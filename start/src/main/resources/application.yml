@@ -4,8 +4,21 @@ server:
       max: 10
 
 spring:
+  profiles:
+    default: local
   application:
     name: tixora
+  datasource:
+    url: ${TIXORA_DB_URL}
+    username: ${TIXORA_DB_USER}
+    password: ${TIXORA_DB_PASSWORD}
+  docker:
+    compose:
+      enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
 
 resilience4j:
   circuitbreaker:
@@ -36,12 +49,15 @@ resilience4j:
 management:
   health:
     circuitbreakers:
-      enable: true
+      enabled: true
   endpoints:
     web:
       exposure:
-        include:
-          - '*'
+        include: health,info,circuitbreakers,ratelimiters
   endpoint:
+    circuitbreakers:
+      access: read-only
+    heapdump:
+      access: none
     health:
-      show-details: always
+      show-details: when-authorized

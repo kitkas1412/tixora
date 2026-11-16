@@ -1,0 +1,23 @@
+server:
+  shutdown: graceful
+  error:
+    include-stacktrace: never
+    include-message: never
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+logging:
+  structured:
+    format:
+      console: ecs
+  level:
+    root: INFO
+    org.hibernate.SQL: WARN
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true

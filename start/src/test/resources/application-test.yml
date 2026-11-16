@@ -1,0 +1,10 @@
+spring:
+  docker:
+    compose:
+      enabled: false
+
+logging:
+  level:
+    org.hibernate.SQL: warn
+    org.testcontainers: info
+    com.zaxxer.hikari: warn
