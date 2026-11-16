@@ -32,6 +32,9 @@ build/
 ### VS Code ###
 .vscode/
 .env
+.env.*
+!.env.example
 .codex
 *local.*
+!**/application-local.yml
 AGENTS.md

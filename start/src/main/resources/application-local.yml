@@ -1,0 +1,19 @@
+spring:
+  docker:
+    compose:
+      enabled: true
+      file: environment/compose.yaml
+      lifecycle-management: start-only
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+
+management:
+  server:
+    port: 9090
+    address: 127.0.0.1
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,mappings,env,configprops,flyway,loggers,circuitbreakers,ratelimiters

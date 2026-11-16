@@ -173,7 +173,7 @@ A ready-to-use request collection is available at [`postman/ticketbooking.postma
 2. Start the full stack (3 app instances behind Nginx, Postgres, Redis, RabbitMQ) from the repository root:
 
    ```bash
-   docker compose --env-file .env -f environment/docker-compose.yml up --build
+   docker compose --env-file .env -f environment/compose.yaml up --build
    ```
 
    Prebuilt images are published to GHCR on every merge to `main` (`latest`, `sha-<commit>`) and on `v*` tags:
@@ -184,31 +184,44 @@ A ready-to-use request collection is available at [`postman/ticketbooking.postma
 
 3. The API is available at `http://localhost` (Nginx, port 80), load-balanced across `app1`/`app2`/`app3`.
 
-### Run locally (without Docker)
+### Run locally
 
-1. Start PostgreSQL and Redis locally.
-2. Update `start/src/main/resources/application-local.yaml` with your local database credentials if they differ from the defaults.
-3. Run with the `local` profile:
+The default profile is `local`. It starts PostgreSQL in Docker through Spring Boot Docker Compose support, so you need Docker running and Redis available on your machine.
 
-   ```bash
-   ./mvnw spring-boot:run
+1. Create `environment/.env`, which Compose reads, and set a database password:
+
+   ```env
+   TIXORA_DB_PASSWORD=<your-password>
    ```
 
-   The app starts on `http://localhost:8080`.
+2. Run `StartApplication` (`start/src/main/java/me/kitkas1412/StartApplication.java`) with the repository root as the working directory.
+
+   Spring Boot starts the `tixora-postgres` container (`127.0.0.1:5433`) and connects the app to it. The container keeps running after the app stops.
+
+3. The app starts on `http://localhost:8080`. Its actuator endpoints are on `http://127.0.0.1:9090`.
 
 ### Configuration
 
-Configuration is environment-driven via Spring profiles (`spring.profiles.active`, default `local`):
+Select a profile with `SPRING_PROFILES_ACTIVE`. If it is not set, `local` is used, so every server or container must set it to `dev` or `prod`.
 
-| Variable | Purpose | Default |
+| Profile | Set with | Notes |
 |---|---|---|
-| `SPRING_PROFILES_ACTIVE` | Active Spring profile | `local` |
-| `DB_HOST` | PostgreSQL host | `localhost` |
-| `POSTGRES_USER` / `POSTGRES_PASS` / `POSTGRES_DB` | PostgreSQL credentials | — |
-| `REDIS_HOST` | Redis host | `localhost` |
-| `RABBITMQ_DEFAULT_USER` / `RABBITMQ_DEFAULT_PASS` | RabbitMQ credentials (Docker Compose) | — |
+| `local` | default | Docker Compose enabled (`environment/compose.yaml`, start-only). Hibernate SQL statements logged at `debug` (bind values are not logged). Actuator on `127.0.0.1:9090` exposes `health`, `info`, `metrics`, `mappings`, `env`, `configprops`, `flyway`, `loggers`, `circuitbreakers`, `ratelimiters`. |
+| `dev` | `SPRING_PROFILES_ACTIVE=dev` | Docker Compose disabled. SQL logging at `info`. Health probes enabled. |
+| `prod` | `SPRING_PROFILES_ACTIVE=prod` | Docker Compose disabled. ECS-formatted console logs, root log level `INFO`. Graceful shutdown (30s per phase). Health probes enabled. Errors do not include stack traces or messages. |
+| `test` | `@ActiveProfiles("test")` | Docker Compose disabled (`start/src/test/resources/application-test.yml`). |
 
-Database schema is managed via `hibernate.ddl-auto: update` for development convenience.
+Settings are in `start/src/main/resources/application.yml` and the `application-<profile>.yml` files next to it. The database settings have no defaults, so `dev` and `prod` require these variables. If any is missing or blank, the app refuses to start and the error names the missing variables (values are never printed):
+
+| Variable | Purpose |
+|---|---|
+| `TIXORA_DB_URL` | PostgreSQL JDBC URL, e.g. `jdbc:postgresql://<host>:5432/tixora` |
+| `TIXORA_DB_USER` | PostgreSQL user |
+| `TIXORA_DB_PASSWORD` | PostgreSQL password |
+
+The Compose database reads `TIXORA_DB_PORT` (default `5433`), `TIXORA_DB_NAME` (default `tixora`), `TIXORA_DB_USER` (default `tixora`) and `TIXORA_DB_PASSWORD` (required, no default) from `environment/compose.yaml`.
+
+Database schema is managed by Flyway (`infrastructure/src/main/resources/db/migration`). Hibernate runs with `ddl-auto: validate`, so it checks the schema against the entities instead of changing it.
 
 ## Building & Testing
 
