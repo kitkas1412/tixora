@@ -151,38 +151,57 @@ A ready-to-use request collection is available at [`postman/ticketbooking.postma
 - Java 21
 - Docker & Docker Compose (recommended), or locally running PostgreSQL + Redis
 
-### Run with Docker Compose (recommended)
+### Run PostgreSQL with Docker Compose
 
-1. Copy the env template and fill in credentials:
+Compose in `environment/compose.yaml` starts only PostgreSQL for local development. It does not start the app.
 
-   ```bash
-   cp .env.example .env
-   ```
+1. Create `environment/.env` and set a database password (see [Run locally](#run-locally)):
 
    ```env
-   POSTGRES_USER=
-   POSTGRES_PASS=
-   POSTGRES_DB=
-
-   RABBITMQ_DEFAULT_USER=
-   RABBITMQ_DEFAULT_PASS=
-
-   JWT_SECRET=   # openssl rand -base64 64
+   TIXORA_DB_PASSWORD=<your-password>
    ```
 
-2. Start the full stack (3 app instances behind Nginx, Postgres, Redis, RabbitMQ) from the repository root:
+2. Start PostgreSQL from the repository root:
 
    ```bash
-   docker compose --env-file .env -f environment/compose.yaml up --build
+   docker compose -f environment/compose.yaml up -d
    ```
 
-   Prebuilt images are published to GHCR on every merge to `main` (`latest`, `sha-<commit>`) and on `v*` tags:
+### Docker image
+
+The root `Dockerfile` builds the app into an image. The container runs with `SPRING_PROFILES_ACTIVE=prod`, so it needs the database variables from [Configuration](#configuration).
+
+1. Build the image from the repository root:
 
    ```bash
-   docker pull ghcr.io/kitkas1412/ticketbooking:latest
+   docker build -t tixora .
    ```
 
-3. The API is available at `http://localhost` (Nginx, port 80), load-balanced across `app1`/`app2`/`app3`.
+2. Run it, replacing the placeholders with your database values:
+
+   ```bash
+   docker run -p 8080:8080 \
+     -e TIXORA_DB_URL=jdbc:postgresql://<host>:5432/tixora \
+     -e TIXORA_DB_USER=<user> \
+     -e TIXORA_DB_PASSWORD=<password> \
+     tixora
+   ```
+
+   Use a host the container can reach. Inside the container, `localhost` is the container itself. If a variable is missing, the app stops at startup and names it.
+
+3. Check that the app is up:
+
+   ```bash
+   curl http://localhost:8080/actuator/health
+   ```
+
+   Liveness and readiness probes are at `/actuator/health/liveness` and `/actuator/health/readiness`. The image build does not run tests; CI runs them.
+
+Prebuilt images are published to GHCR on every merge to `main` (`latest` and `sha-<short-sha>`) and on `v*` tags (for example `v1.2.3` gives `1.2.3` and `1.2`):
+
+```bash
+docker pull ghcr.io/kitkas1412/tixora:latest
+```
 
 ### Run locally
 
