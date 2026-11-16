@@ -4,6 +4,8 @@ spring:
       enabled: true
       file: environment/compose.yaml
       lifecycle-management: start-only
+  flyway:
+    locations: classpath:db/migration,classpath:db/seed
 
 logging:
   level:
