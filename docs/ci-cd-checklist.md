@@ -24,7 +24,7 @@ Thứ tự nên làm: **2 → 4 → 5**. Chưa có actuator và migration DB th�
   - Các check bắt buộc: `Build & Test`, `Integration Test`, `Dependency Review`, `CodeQL (java)`, `Gitleaks`, `Conventional title`, `Build image`
   - Tên check phải khớp đúng với `name:` của job trong workflow
 - [ ] **GHCR package**: sau lần push đầu tiên, vào Packages để chọn visibility (public hoặc private) và liên kết package với repo
-- [ ] Kiểm tra image `ghcr.io/kitkas1412/ticketbooking:latest` đã có sau khi merge vào `main`
+- [ ] Kiểm tra image `ghcr.io/kitkas1412/tixora:latest` đã có sau khi merge vào `main`
 
 ## 3. Phần CI còn nên bổ sung
 
@@ -41,7 +41,7 @@ Thứ tự nên làm: **2 → 4 → 5**. Chưa có actuator và migration DB th�
 - [ ] Tạo **profile `prod`**: `show-sql: false`, bỏ `format_sql`, chỉnh lại mức log
 - [ ] Thêm `HEALTHCHECK` và graceful shutdown (`server.shutdown: graceful`)
 - [ ] Làm file **compose cho prod**:
-  - Dùng `image: ghcr.io/kitkas1412/ticketbooking:<tag>` thay cho `build: ..`
+  - Dùng `image: ghcr.io/kitkas1412/tixora:<tag>` thay cho `build: ..`
   - Bỏ các port public của Postgres, Redis và RabbitMQ (`5432`, `6379`, `5672`, `15672`)
   - Thêm `depends_on: condition: service_healthy`
   - Thêm `restart` cho `app1`, `app2`, `app3`
