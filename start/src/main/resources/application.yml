@@ -1,7 +1,7 @@
 server:
   tomcat:
     threads:
-      max: 10
+      max: 200
 
 spring:
   profiles:
@@ -9,6 +9,9 @@ spring:
   application:
     name: tixora
   datasource:
+    hikari:
+      maximum-pool-size: 20   # Số lượng tối đa kết nối
+      minimum-idle: 5         # Số lượng kết nối tối thiểu trong pool
     url: ${TIXORA_DB_URL}
     username: ${TIXORA_DB_USER}
     password: ${TIXORA_DB_PASSWORD}
@@ -19,6 +22,21 @@ spring:
     hibernate:
       ddl-auto: validate
     open-in-view: false
+  jackson:
+    serialization:
+      indent-output: true
+  data:
+    redis:
+      host: ${TIXORA_REDIS_HOST:localhost} # Host of the Redis server
+      port: ${TIXORA_REDIS_PORT:6319} # Port of the Redis server for connection
+      password: ${TIXORA_REDIS_PASSWORD:change-me}  # Password for connecting to the Redis server (default is empty)
+      lettuce:
+        pool: # Connection pool settings
+          max-active: 8 # Maximum number of active connections in the pool (uses -1 for no limit)
+          max-idle: 8 # Maximum number of idle connections in the pool
+          min-idle: 0 # Minimum number of idle connections in the pool
+          max-wait: -1ms # Maximum wait time to get a connection from the pool (uses -1 for no limit)
+      connect-timeout: 30000
 
 resilience4j:
   circuitbreaker:
@@ -37,7 +55,7 @@ resilience4j:
     instances:
       backendA:
         limitForPeriod: 2
-        limitRefreshPeriod: 1s
+        limitRefreshPeriod: 10s
         timeoutDuration: 0
         registerHealthIndicator: true
         eventConsumerBufferSize: 100
@@ -53,11 +71,11 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,circuitbreakers,ratelimiters
+        include:
+          - '*'
   endpoint:
-    circuitbreakers:
-      access: read-only
-    heapdump:
-      access: none
     health:
-      show-details: when-authorized
+      show-details: always
+    prometheus:
+      enabled: true
+
