@@ -1,4 +1,4 @@
-package me.kitkas1412.tixora.controller.resource;
+package me.kitkas1412.tixora.controller.http;
 
 import me.kitkas1412.tixora.application.service.event.EventAppService;
 import org.springframework.web.bind.annotation.GetMapping;
