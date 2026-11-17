@@ -1,34 +1,38 @@
 package me.kitkas1412.tixora.infrastructure.persistence.repository;
 
+import lombok.extern.slf4j.Slf4j;
 import me.kitkas1412.tixora.domain.model.entity.TicketDetail;
 import me.kitkas1412.tixora.domain.repository.TicketDetailRepository;
-import me.kitkas1412.tixora.infrastructure.persistence.mapper.TicketDetailJpaRepository;
+import me.kitkas1412.tixora.infrastructure.persistence.mapper.TicketDetailJPAMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Service
+@Slf4j
 public class TicketDetailInfrasRepositoryImpl implements TicketDetailRepository {
 
-    private final TicketDetailJpaRepository ticketDetailJpaRepository;
+    private final TicketDetailJPAMapper ticketDetailJPAMapper;
 
-    public TicketDetailInfrasRepositoryImpl(TicketDetailJpaRepository ticketDetailJpaRepository) {
-        this.ticketDetailJpaRepository = ticketDetailJpaRepository;
+    public TicketDetailInfrasRepositoryImpl(TicketDetailJPAMapper ticketDetailJPAMapper) {
+        this.ticketDetailJPAMapper = ticketDetailJPAMapper;
     }
 
     @Override
     public Optional<TicketDetail> findById(Long id) {
-        return ticketDetailJpaRepository.findById(id);
+        log.info("Implement Infrastructure : {}", id);
+        return ticketDetailJPAMapper.findById(id);
     }
 
     @Override
     public List<TicketDetail> findAll() {
-        return ticketDetailJpaRepository.findAll();
+        return List.of();
     }
 
     @Override
     public TicketDetail save(TicketDetail ticketDetail) {
-        return ticketDetailJpaRepository.save(ticketDetail);
+        return null;
     }
 }
