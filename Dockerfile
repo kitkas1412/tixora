@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM eclipse-temurin:21-jdk-noble AS build
+FROM eclipse-temurin:24-jdk-noble AS build
 WORKDIR /src
 COPY . .
 RUN chmod +x mvnw
@@ -8,7 +8,7 @@ RUN --mount=type=cache,target=/root/.m2 \
     ./mvnw -B -ntp -DskipTests package -pl start -am \
     && java -Djarmode=tools -jar start/target/tixora.jar extract --layers --launcher --destination /extracted
 
-FROM eclipse-temurin:21-jre-noble AS runtime
+FROM eclipse-temurin:24-jre-noble AS runtime
 LABEL org.opencontainers.image.source="https://github.com/kitkas1412/tixora" \
       org.opencontainers.image.title="tixora"
 RUN groupadd --system --gid 10001 app \
