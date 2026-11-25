@@ -1,0 +1,26 @@
+name: ticketbox
+
+services:
+  postgres:
+    image: postgres:17.12
+    container_name: ticketbox-postgres
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${TICKETBOX_DB_PORT:-5434}:5432"
+    environment:
+      POSTGRES_DB: ${TICKETBOX_DB_NAME:-ticketbox}
+      POSTGRES_USER: ${TICKETBOX_DB_USER:-ticketbox}
+      POSTGRES_PASSWORD: ${TICKETBOX_DB_PASSWORD:?set TICKETBOX_DB_PASSWORD in tools/ticketbox/.env}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C.UTF-8"
+    volumes:
+      - ticketbox-pg-data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  ticketbox-pg-data:
