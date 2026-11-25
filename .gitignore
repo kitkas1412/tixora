@@ -38,3 +38,8 @@ build/
 *local.*
 !**/application-local.yml
 AGENTS.md
+# tools/ticketbox
+.venv/
+__pycache__/
+tools/ticketbox/out/
+environment/data/

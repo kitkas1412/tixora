@@ -13,9 +13,9 @@ logging:
 
 management:
   server:
-    port: 9090
+    port: 8081
     address: 127.0.0.1
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,mappings,env,configprops,flyway,loggers,circuitbreakers,ratelimiters
+        include: health,info,metrics,mappings,env,configprops,flyway,loggers,circuitbreakers,ratelimiters,prometheus
