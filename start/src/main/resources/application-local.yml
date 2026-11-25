@@ -18,4 +18,5 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,mappings,env,configprops,flyway,loggers,circuitbreakers,ratelimiters,prometheus
+        include:
+          - '*'
