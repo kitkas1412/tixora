@@ -1,0 +1,134 @@
+{
+ "status": 1,
+ "message": "Success",
+ "data": {
+  "result": {
+   "id": 25635,
+   "title": "Trải Nghiệm Bay Dù Lượn Mù Cang Chải",
+   "bannerURL": "https://salt.tkbcdn.com/ts/ds/57/c3/ea/b7a1f09689985284bc5ca6865d52f972.jpg",
+   "url": "trai-nghiem-bay-du-luon-mu-cang-chai",
+   "description": "<p style=\"margin-top: 20px; margin-bottom: 20px;\"><strong>Gi",
+   "type": 1,
+   "venue": "Đèo Khau Phạ| Mù Cang Chải",
+   "address": "Deo Khau Pha, Cao Pha Commune, Mu Cang Chai District, Yen Bai Province",
+   "orgLogoURL": "https://salt.tkbcdn.com/ts/ds/ee/24/c5/3163da318b01a7933cd17833e72ede28.png",
+   "orgName": "Mebayluon Paragliding",
+   "orgDescription": "Tự hào là đơn vị bay dù lượn chuyên nghiệp nhất Việt Nam, 10",
+   "isFree": false,
+   "isHot": false,
+   "isFormIncluded": true,
+   "isFormPerOrder": true,
+   "hasPhysicalItem": false,
+   "minTicketPrice": 2190000,
+   "hasMoreThanOneShowing": true,
+   "isBookingAllowed": true,
+   "status": "select_showing",
+   "statusName": "Book now",
+   "showings": [
+    {
+     "id": 27154173936843,
+     "status": "book_now",
+     "statusName": "Book now",
+     "isSalable": true,
+     "ticketTypes": [
+      {
+       "id": 1057526,
+       "name": "Bay dù lượn tại Mù Cang Chải",
+       "description": "",
+       "color": "",
+       "isFree": false,
+       "price": 2190000,
+       "originalPrice": 2190000,
+       "maxQtyPerOrder": 10,
+       "minQtyPerOrder": 1,
+       "startTime": "2026-02-01T14:24:00Z",
+       "endTime": "2027-02-27T17:00:00Z",
+       "position": 1,
+       "status": "book_now",
+       "statusName": "Book now",
+       "imageUrl": ""
+      },
+      {
+       "id": 1057527,
+       "name": "Bay dù lượn tại Mù Cang Chải",
+       "description": "",
+       "color": "",
+       "isFree": false,
+       "price": 2590000,
+       "originalPrice": 2590000,
+       "maxQtyPerOrder": 10,
+       "minQtyPerOrder": 1,
+       "startTime": "2026-02-01T14:25:00Z",
+       "endTime": "2027-02-27T17:00:00Z",
+       "position": 2,
+       "status": "book_now",
+       "statusName": "Book now",
+       "imageUrl": ""
+      }
+     ],
+     "startTime": "2026-01-31T17:00:00Z",
+     "endTime": "2027-02-27T17:00:00Z",
+     "version": 3,
+     "showingTime": "00:00, 01 February, 2026 - 00:00, 28 February, 2027"
+    },
+    {
+     "id": 71409040147267,
+     "status": "book_now",
+     "statusName": "Book now",
+     "isSalable": true,
+     "ticketTypes": [
+      {
+       "id": 1057528,
+       "name": "Bay dù lượn tại Mù Cang Chải",
+       "description": "",
+       "color": "",
+       "isFree": false,
+       "price": 2190000,
+       "originalPrice": 2190000,
+       "maxQtyPerOrder": 10,
+       "minQtyPerOrder": 1,
+       "startTime": "2026-02-01T14:24:00Z",
+       "endTime": "2027-02-27T17:00:00Z",
+       "position": 1,
+       "status": "book_now",
+       "statusName": "Book now",
+       "imageUrl": ""
+      },
+      {
+       "id": 1057529,
+       "name": "Bay dù lượn tại Mù Cang Chải",
+       "description": "",
+       "color": "",
+       "isFree": false,
+       "price": 2590000,
+       "originalPrice": 2590000,
+       "maxQtyPerOrder": 10,
+       "minQtyPerOrder": 1,
+       "startTime": "2026-02-01T14:25:00Z",
+       "endTime": "2027-02-27T17:00:00Z",
+       "position": 2,
+       "status": "book_now",
+       "statusName": "Book now",
+       "imageUrl": ""
+      }
+     ],
+     "startTime": "2026-01-31T17:00:00Z",
+     "endTime": "2027-02-27T17:00:00Z",
+     "version": 3,
+     "showingTime": "00:00, 01 February, 2026 - 00:00, 28 February, 2027"
+    }
+   ],
+   "startTime": "2026-01-31T17:00:00Z",
+   "endTime": "2027-02-27T17:00:00Z",
+   "originalId": 25635,
+   "categoriesV2": [
+    "attractionsexperiences"
+   ],
+   "locationId": "ChIJI_bWH11aMzERG4A3xCErFUs",
+   "tzOffset": 7,
+   "showingTime": "00:00, 01 February, 2026 - 00:00, 28 February, 2027"
+  }
+ },
+ "code": 0,
+ "traceId": ""
+}

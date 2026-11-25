@@ -1,0 +1,50 @@
+{
+ "status": 1,
+ "message": "Success",
+ "data": {
+  "results": [
+   {
+    "id": 26859,
+    "originalId": 26859,
+    "name": "MAMA ƠI WORKSHOP - 90 NGÀY SAU SINH",
+    "imageUrl": "https://images.tkbcdn.com/2/608/332/ts/ds/04/65/b9/89b1bebb6f06bc5134e13d8a43789a85.jpg",
+    "deeplink": "https://ticketbox.vn/mama-oi-workshop-90-ngay-sau-sinh-26859?utm_medium=newly-on-sale&utm_source=tkb-homepage",
+    "price": 1329000,
+    "isFree": false,
+    "day": "2026-12-12T01:00:00Z",
+    "sellingTime": null,
+    "isSoldOut": false,
+    "status": 3,
+    "saleStage": "on_sale",
+    "isReminded": false,
+    "city": {
+     "id": 305,
+     "vi": "TP.HCM",
+     "en": "HCMC"
+    }
+   },
+   {
+    "id": 26863,
+    "originalId": 26863,
+    "name": "Xuân Phát Tài",
+    "imageUrl": "https://images.tkbcdn.com/2/608/332/ts/ds/3f/9a/73/f064936b531232936d5ccdc7638a8138.jpg",
+    "deeplink": "https://ticketbox.vn/xuan-phat-tai-26863?utm_medium=newly-on-sale&utm_source=tkb-homepage",
+    "price": 1500000,
+    "isFree": false,
+    "day": "2026-11-18T07:00:00Z",
+    "sellingTime": null,
+    "isSoldOut": false,
+    "status": 3,
+    "saleStage": "on_sale",
+    "isReminded": false,
+    "city": {
+     "id": 278,
+     "vi": "Hà Nội",
+     "en": "Ha Noi"
+    }
+   }
+  ]
+ },
+ "code": 0,
+ "traceId": ""
+}

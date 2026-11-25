@@ -1,0 +1,41 @@
+{
+ "code": 200,
+ "message": "Success",
+ "data": {
+  "results": [
+   {
+    "id": 24853,
+    "name": "SUBICHA MERCHANDISE COLLECTION",
+    "imageUrl": "https://images.tkbcdn.com/2/608/332/ts/ds/c8/14/ee/c7309f2991beab5310911603aca35c4c.jpg",
+    "orgLogoUrl": "https://salt.tkbcdn.com/ts/ds/99/b8/6b/3ca2be1192cdb096cb7b3c79d6b2d819.png",
+    "day": "2025-10-01T05:00:00Z",
+    "price": 60000,
+    "deeplink": "https://ticketbox.vn/subicha-merchandise-vutruconcert-24853?utm_medium=sr-all-dates_all-prices&utm_source=tkb-search-results",
+    "isNewBookingFlow": true,
+    "originalId": 24853,
+    "url": "subicha-merchandise-vutruconcert",
+    "badge": null,
+    "categories": null
+   },
+   {
+    "id": 25635,
+    "name": "Trải Nghiệm Bay Dù Lượn Mù Cang Chải",
+    "imageUrl": "https://images.tkbcdn.com/2/608/332/ts/ds/57/c3/ea/b7a1f09689985284bc5ca6865d52f972.jpg",
+    "orgLogoUrl": "https://salt.tkbcdn.com/ts/ds/ee/24/c5/3163da318b01a7933cd17833e72ede28.png",
+    "day": "2026-01-31T17:00:00Z",
+    "price": 2190000,
+    "deeplink": "https://ticketbox.vn/trai-nghiem-bay-du-luon-mu-cang-chai-25635?utm_medium=sr-all-dates_all-prices&utm_source=tkb-search-results",
+    "isNewBookingFlow": true,
+    "originalId": 25635,
+    "url": "trai-nghiem-bay-du-luon-mu-cang-chai",
+    "badge": null,
+    "categories": null
+   }
+  ],
+  "pagination": {
+   "hasMore": true,
+   "pageSize": 2,
+   "currentPage": 1
+  }
+ }
+}
