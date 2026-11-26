@@ -90,5 +90,16 @@ services:
     ports:
       - '9187:9187'
 
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.99.0
+    container_name: tixora-redis-exporter
+    restart: unless-stopped
+    environment:
+      REDIS_ADDR: redis://redis:6379
+    depends_on:
+      - redis
+    ports:
+      - '9121:9121'
+
 volumes:
   tixora-pg-data:
