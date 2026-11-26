@@ -62,7 +62,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>4.0.7</version>
+                <version>4.2.0</version>
                 <configuration>
                     <mainClass>me.kitkas1412.StartApplication</mainClass>
                 </configuration>
