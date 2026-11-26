@@ -76,5 +76,19 @@ services:
     ports:
       - '9100:9100'
 
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter:v0.21.1
+    container_name: tixora-postgres-exporter
+    restart: unless-stopped
+    environment:
+      DATA_SOURCE_URI: postgres:5432/${TIXORA_DB_NAME:-tixora}?sslmode=disable
+      DATA_SOURCE_USER: ${TIXORA_DB_USER:-tixora}
+      DATA_SOURCE_PASS: ${TIXORA_DB_PASSWORD:?set TIXORA_DB_PASSWORD in environment/.env}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - '9187:9187'
+
 volumes:
   tixora-pg-data:
