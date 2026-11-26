@@ -23,3 +23,8 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: [ "host.docker.internal:9187" ]
+
+  - job_name: "tixora-redis-exporter"
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ "host.docker.internal:9121" ]
