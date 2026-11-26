@@ -18,3 +18,8 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: [ "host.docker.internal:9100" ]
+
+  - job_name: "tixora-postgres-exporter"
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ "host.docker.internal:9187" ]
